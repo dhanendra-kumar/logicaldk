@@ -1,0 +1,19 @@
+package in.logicaldk;
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.nio.file.*;
+
+public class MailServlet extends HttpServlet {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		try {
+			String input = "" + req.getParameter("name") + " | " + req.getParameter("email") + " | " + req.getParameter("subject") + " | "  + req.getParameter("message") + System.getProperty("line.separator") + "-------------------------------------------" + System.getProperty("line.separator");
+    			Files.write(Paths.get("/home/dhanendra/contactedPeople.txt"), input.getBytes(), StandardOpenOption.APPEND);
+		} catch (IOException e) {
+		    //exception handling left as an exercise for the reader
+		}
+		resp.getWriter().println("<script>window.location.href = 'http://www.logicaldk.in'</script>");
+	}
+}
+

@@ -1,0 +1,32 @@
+apply plugin: 'java'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.0.1'
+}
+
+task copyStatic(type: Copy, dependsOn: build) {
+    println "Deploying..."
+    def source = "$rootDir/static"
+    println source
+    from source
+    into '/home/dhanendra/tomcat/webapps/ROOT'
+}
+
+task deploy(type: Copy, dependsOn: copyStatic) {
+    println "Deploying..."
+    def source = "$rootDir/build/classes/main"
+    println source
+    from source
+    into '/home/dhanendra/tomcat/webapps/ROOT/WEB-INF/classes'
+}
+
+deploy << {
+    "/home/dhanendra/tomcat/bin/shutdown.sh".execute()
+    "/home/dhanendra/tomcat/bin/startup.sh".execute()
+
+}
