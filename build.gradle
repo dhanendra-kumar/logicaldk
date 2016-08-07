@@ -10,7 +10,7 @@ dependencies {
 }
 
 task copyStatic(type: Copy, dependsOn: build) {
-    println "Deploying..."
+    println "Copying static content..."
     def source = "$rootDir/static"
     println source
     from source
