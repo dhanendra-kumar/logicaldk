@@ -8,11 +8,11 @@
     <display-name>Logical DK</display-name>
 
     <servlet>
-        <servlet-name>in.logicaldk.MailServlet</servlet-name>
+        <servlet-name>MailServlet</servlet-name>
         <servlet-class>in.logicaldk.MailServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MailServlet</servlet-name>
-        <url-pattern>/sendMail</url-pattern>
+        <url-pattern>/sendmail</url-pattern>
     </servlet-mapping>
 </web-app>
