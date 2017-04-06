@@ -15,7 +15,7 @@ task copyStatic(type: Copy, dependsOn: build) {
     def source = "$rootDir/static"
     println source
     from source
-    into '/home/dhanendra/tomcat/webapps/ROOT'
+    into '/etc/tomcat7/webapps/ROOT'
 }
 
 task deploy(type: Copy, dependsOn: copyStatic) {
@@ -23,11 +23,10 @@ task deploy(type: Copy, dependsOn: copyStatic) {
     def source = "$rootDir/build/classes/main"
     println source
     from source
-    into '/home/dhanendra/tomcat/webapps/ROOT/WEB-INF/classes'
+    into '/etc/tomcat7/webapps/ROOT/WEB-INF/classes'
 }
 
 deploy << {
-    "/home/dhanendra/tomcat/bin/shutdown.sh".execute()
-    "/home/dhanendra/tomcat/bin/startup.sh".execute()
-
+    "/etc/tomcat7/bin/shutdown.sh".execute()
+    "/etc/tomcat7/bin/startup.sh".execute()
 }
